@@ -111,7 +111,8 @@ def eq_to_hor(ra,
     HA = sidereal_time_at_observer_longitude - ra
 
     # Calculate longitude of substellar point
-    longitude_of_substellar_point = new_longitude(longitude_of_observer,HA*360/24)
+    longitude_of_substellar_point = new_longitude(longitude_of_observer,-HA*360/24)
+    print(longitude_of_substellar_point)
     latitude_of_substellar_point = dec
 
     # Convert angles in degrees to radians.
@@ -151,8 +152,7 @@ def eq_to_hor(ra,
     # Project observer to substellar point vector to surface tangent plane at observer.
     observer_to_substellar_point_vector = position_vector_of_substellar_point - position_vector_of_observer
     surface_normal_to_local_tangent_plane_at_observer = position_vector_of_observer
-    projection_of_observer_to_substellar_point_vector_on_surface_tangent_plane_at_observer = \
-        calculate_projection_of_vector_on_plane(
+    projection_of_observer_to_substellar_point_vector_on_surface_tangent_plane_at_observer = calculate_projection_of_vector_on_plane(
             observer_to_substellar_point_vector,
             surface_normal_to_local_tangent_plane_at_observer)
     projection_of_observer_to_substellar_point_vector_on_surface_tangent_plane_at_observer = \
@@ -190,12 +190,6 @@ def eq_to_hor(ra,
     elif ra == sidereal_time_at_observer_longitude:
         azimuth = 180
 
-
-
-    # Altitude is calculated by assuming that the light rays at observer are parallel
-    # to the light rays toward the center of the earth passing through the substellar point.
-    # Altitude is given by 90 - angle between position vectors of observer and substellar point.
-
     # # Calculate Altitude
     altitude_ = math.acos(cos_lat_obs * cos_lat_ss * math.cos(rad_lon_obs - rad_lon_ss) +
                           sin_lat_obs * sin_lat_ss)
@@ -220,8 +214,7 @@ def hor_to_eq(azimuth,
         time_functions.local_sidereal_time(time_of_observation_in_datetime_format,
                                            local_standard_time_meridian,
                                            longitude_of_observer)
-    print("sidereal time")
-    print(sidereal_time_at_observer_longitude)
+
     # Convert all known angles to radians and compute sine and cosine of the angles
     rad_lat_obs = math.radians(latitude_of_observer)
     rad_lon_obs = math.radians(longitude_of_observer)
@@ -245,9 +238,8 @@ def hor_to_eq(azimuth,
 
     coordinates_of_local_tangent_pointing_north = coordinates_of_local_tangent_pointing_north.tolist()
 
-    position_vector_of_tail_of_rotation_axis = [cos_lat_obs * cos_lon_obs, cos_lat_obs * sin_lon_obs, sin_lat_obs]
-    position_vector_of_tip_of_rotation_axis = [2 * cos_lat_obs * cos_lon_obs, 2 * cos_lat_obs * sin_lon_obs,
-                                               2 * sin_lat_obs]
+    position_vector_of_tail_of_rotation_axis = position_vector_of_observer
+    position_vector_of_tip_of_rotation_axis = 2*position_vector_of_observer
 
     # Find expression for azimuth direction coordinates by rotating about the normal of tangent plane at observer
     azimuth_direction_coordinates = rotate_point_about_arbitrary_axis_in_3d(
@@ -255,52 +247,58 @@ def hor_to_eq(azimuth,
         position_vector_of_tip_of_rotation_axis=position_vector_of_tip_of_rotation_axis,
         coordinates_to_rotate=coordinates_of_local_tangent_pointing_north,
         rotation_angle_in_degrees=-azimuth)
-    # Test
     azimuth_direction_vector = azimuth_direction_coordinates - position_vector_of_tail_of_rotation_axis
+
+    # Test
+
     # # Angle between local tangent pointing north and azimuth direction vector
-    print("azimuth calculated: ")
-    print(math.degrees(math.acos(np.dot(local_tangent_pointing_north_vector,azimuth_direction_vector)/
-              (np.linalg.norm(local_tangent_pointing_north_vector)*np.linalg.norm(azimuth_direction_vector)))))
-    print()
+    # print("azimuth calculated: ")
+    # print(math.degrees(math.acos(np.dot(local_tangent_pointing_north_vector,azimuth_direction_vector)/
+    #           (np.linalg.norm(local_tangent_pointing_north_vector)*np.linalg.norm(azimuth_direction_vector)))))
+    # print()
     # sys.exit()
     # Rotate coordinates of azimuth direction about surface normal at observer by an additional 90 degrees
-    rotation_angle = -90
-
-    coordinates_of_90_degree_away_from_azimuth = rotate_point_about_arbitrary_axis_in_3d(
-        position_vector_of_tail_of_rotation_axis=position_vector_of_tail_of_rotation_axis,
-        position_vector_of_tip_of_rotation_axis=position_vector_of_tip_of_rotation_axis,
-        coordinates_to_rotate=azimuth_direction_coordinates,
-        rotation_angle_in_degrees=rotation_angle)
-    vector_of_coordinates_of_90_degree_away_from_azimuth = np.array(coordinates_of_90_degree_away_from_azimuth) - \
-                                                           np.array(position_vector_of_tail_of_rotation_axis)
-
-    # Rotate azimuth_direction_coordinates by elevation angle about the ninety_degree_away_vector axis from_azimuth_vector
-    substellar_point_coordinates = rotate_point_about_arbitrary_axis_in_3d(
-        position_vector_of_tail_of_rotation_axis=position_vector_of_tail_of_rotation_axis,
-        position_vector_of_tip_of_rotation_axis=coordinates_of_90_degree_away_from_azimuth,
-        coordinates_to_rotate=azimuth_direction_coordinates,
-        rotation_angle_in_degrees=altitude)
-    substellar_point_vector = substellar_point_coordinates - position_vector_of_tail_of_rotation_axis
-    unit_substellar_point_vector = substellar_point_vector / np.linalg.norm(substellar_point_vector)
-    print(unit_substellar_point_vector)
-    print("altitude calculated: ")
-    print(math.degrees(math.acos(np.dot(unit_substellar_point_vector,azimuth_direction_vector)/
-              (np.linalg.norm(unit_substellar_point_vector)*np.linalg.norm(azimuth_direction_vector)))))
-    print()
-    DEC = math.asin(unit_substellar_point_vector[2])
-
-    # Find longitude of substellar point
-    sin_lon_ss = unit_substellar_point_vector[1] / math.cos(DEC)
-    lon_ss = math.asin(sin_lon_ss)
-    lon_ss = math.degrees(lon_ss)
-    print("lon_ss "+str(lon_ss))
-    sidereal_time_at_observer_longitude = time_functions.convert_time_to_decimal(sidereal_time_at_observer_longitude)
-    RA = sidereal_time_at_observer_longitude - (longitude_of_observer - lon_ss) / 15
-    if RA < 0:
-        RA = RA + 24
-    DEC = math.degrees(DEC)
-
-    return RA, DEC
+    # rotation_angle = -90
+    #
+    # coordinates_of_90_degree_away_from_azimuth = rotate_point_about_arbitrary_axis_in_3d(
+    #     position_vector_of_tail_of_rotation_axis=position_vector_of_tail_of_rotation_axis,
+    #     position_vector_of_tip_of_rotation_axis=position_vector_of_tip_of_rotation_axis,
+    #     coordinates_to_rotate=azimuth_direction_coordinates,
+    #     rotation_angle_in_degrees=rotation_angle)
+    # # vector_of_coordinates_of_90_degree_away_from_azimuth = np.array(coordinates_of_90_degree_away_from_azimuth) - \
+    # #                                                        np.array(position_vector_of_tail_of_rotation_axis)
+    #
+    # # Rotate azimuth_direction_coordinates by elevation angle about the ninety_degree_away_vector axis from_azimuth_vector
+    # substellar_point_coordinates = rotate_point_about_arbitrary_axis_in_3d(
+    #     position_vector_of_tail_of_rotation_axis=position_vector_of_tail_of_rotation_axis,
+    #     position_vector_of_tip_of_rotation_axis=coordinates_of_90_degree_away_from_azimuth,
+    #     coordinates_to_rotate=azimuth_direction_coordinates,
+    #     rotation_angle_in_degrees=altitude)
+    #
+    # substellar_point_vector = substellar_point_coordinates - position_vector_of_tail_of_rotation_axis
+    #
+    # unit_substellar_point_vector = substellar_point_vector / np.linalg.norm(substellar_point_vector)
+    # # print(unit_substellar_point_vector)
+    # # print("altitude calculated: ")
+    # # print(math.degrees(math.acos(np.dot(unit_substellar_point_vector,azimuth_direction_vector)/
+    # #           (np.linalg.norm(unit_substellar_point_vector)*np.linalg.norm(azimuth_direction_vector)))))
+    # # print()
+    # DEC = math.asin(unit_substellar_point_vector[2])
+    #
+    # # Find longitude of substellar point
+    # sin_lon_ss = unit_substellar_point_vector[1] / math.cos(DEC)
+    # lon_ss = math.asin(sin_lon_ss)
+    # lon_ss = math.degrees(lon_ss)
+    # # print("lon_ss "+str(lon_ss))
+    # sidereal_time_at_observer_longitude = time_functions.convert_time_to_decimal(sidereal_time_at_observer_longitude)
+    # RA = sidereal_time_at_observer_longitude - (longitude_of_observer - lon_ss) / 15
+    # if RA < 0:
+    #     RA = RA + 24
+    # elif RA > 24:
+    #     RA = RA - 24
+    # DEC = math.degrees(DEC)
+    #
+    # return RA, DEC
 
 # Calculates new longitude from current longitude based on delta longitude
 def new_longitude(longitude_in_degrees,
