@@ -20,13 +20,13 @@ def rotate_point_about_arbitrary_axis_in_3d(position_vector_of_tail_of_rotation_
                                             coordinates_to_rotate,
                                             rotation_angle_in_degrees):
     rad_rotation_angle = math.radians(rotation_angle_in_degrees)
-
+    print("position_vector_of_tip_of_rotation_axis: "+str(position_vector_of_tip_of_rotation_axis))
+    print("position_vector_of_tail_of_rotation_axis: "+str(position_vector_of_tail_of_rotation_axis))
     # Convert to homogenous coordinates
-    rotation_axis = list(
-        np.array(position_vector_of_tip_of_rotation_axis) - np.array(position_vector_of_tail_of_rotation_axis))
+    rotation_axis = np.round(np.array(position_vector_of_tip_of_rotation_axis) - np.array(position_vector_of_tail_of_rotation_axis),5)
+    print("rotation_axis: "+str(rotation_axis))
     coordinates_to_rotate = list(coordinates_to_rotate)
     coordinates_to_rotate.append(1)
-    rotation_axis.append(1)
     coordinates_of_rotation_axis = position_vector_of_tail_of_rotation_axis
     translation_to_origin_matrix = [[1, 0, 0, -coordinates_of_rotation_axis[0]],
                                     [0, 1, 0, -coordinates_of_rotation_axis[1]],
@@ -35,31 +35,35 @@ def rotate_point_about_arbitrary_axis_in_3d(position_vector_of_tail_of_rotation_
 
     # Find angle between z axis and the projection of the shifted rotation axis on xz plane
     theta = math.atan(rotation_axis[0] /
-                      rotation_axis[2])
+                      (rotation_axis[2] + 1e-12))
+    print("theta: "+str(theta)
+)
+    if rotation_axis[0] == 0 and rotation_axis[2] < 0:
+        print("############")
+        theta = theta + math.pi
+    if rotation_axis[0] > 0 and rotation_axis[1] > 0 and rotation_axis[2] < 0:
+        theta = math.pi + theta
+    print("theta: "+str(theta))
+
 
     # # Matrix for Rotating the shifted north tangent vector by -theta about y axis
-    rotate_by_negative_theta_about_y_axis_matrix = [[math.cos(-theta), 0, math.sin(-theta), 0],
+    rotate_by_negative_theta_about_y_axis_matrix = [[math.cos(theta), 0, -math.sin(theta), 0],
                                                     [0, 1, 0, 0],
-                                                    [-math.sin(-theta), 0, math.cos(-theta), 0],
+                                                    [math.sin(theta), 0, math.cos(theta), 0],
                                                     [0, 0, 0, 1]]
     # # Find angle between transformed rotation axis and z axis
 
     phi = math.atan(rotation_axis[1] /
-                    math.sqrt(rotation_axis[0] ** 2 +
-                              rotation_axis[2] ** 2))
+                    (math.sqrt(rotation_axis[0] ** 2 +
+                              rotation_axis[2] ** 2)) + 1e-12)
 
+    print("phi: "+str(phi))
+    # phi = math.pi - phi
     # # Matrix for Rotating transformed north tangent vector by phi about x axis
     rotate_by_phi_about_x_axis_matrix = [[1, 0, 0, 0],
                                          [0, math.cos(phi), -math.sin(phi), 0],
                                          [0, math.sin(phi), math.cos(phi), 0],
                                          [0, 0, 0, 1]]
-
-    forward_composite_matrix = np.matmul(rotate_by_phi_about_x_axis_matrix,
-                                         rotate_by_negative_theta_about_y_axis_matrix)
-    forward_composite_matrix = np.matmul(forward_composite_matrix, translation_to_origin_matrix)
-
-    coordinates_after_forward_transform = np.matmul(forward_composite_matrix,
-                                                    coordinates_to_rotate)
 
     # Rotate coordinates_to_rotate by rotation angle about z axis
     rotate_by_negative_azimuth_about_z_axis_matrix = [
@@ -69,8 +73,8 @@ def rotate_point_about_arbitrary_axis_in_3d(position_vector_of_tail_of_rotation_
         [0, 0, 0, 1]]
     # Rotate by negative phi about x
     rotate_by_negative_phi_about_x_matrix = [[1, 0, 0, 0],
-                                             [0, math.cos(-phi), -math.sin(-phi), 0],
-                                             [0, math.sin(-phi), math.cos(-phi), 0],
+                                             [0, math.cos(phi), math.sin(phi), 0],
+                                             [0, -math.sin(phi), math.cos(phi), 0],
                                              [0, 0, 0, 1]]
     # Rotate by theta about y
     rotate_by_theta_about_y_matrix = [[math.cos(theta), 0, math.sin(theta), 0],
@@ -82,13 +86,16 @@ def rotate_point_about_arbitrary_axis_in_3d(position_vector_of_tail_of_rotation_
                                                [0, 1, 0, coordinates_of_rotation_axis[1]],
                                                [0, 0, 1, coordinates_of_rotation_axis[2]],
                                                [0, 0, 0, 1]]
-    backward_composite_matrix = np.matmul(translation_to_observer_location_matrix, rotate_by_theta_about_y_matrix)
-    backward_composite_matrix = np.matmul(backward_composite_matrix, rotate_by_negative_phi_about_x_matrix)
-    backward_composite_matrix = np.matmul(backward_composite_matrix, rotate_by_negative_azimuth_about_z_axis_matrix)
 
-    rotated_coordinates = np.matmul(backward_composite_matrix,
-                                    coordinates_after_forward_transform)
-    return rotated_coordinates[0:3]
+    rot_coord = np.matmul(translation_to_observer_location_matrix,rotate_by_theta_about_y_matrix)
+    rot_coord = np.matmul(rot_coord,rotate_by_negative_phi_about_x_matrix)
+    rot_coord = np.matmul(rot_coord,rotate_by_negative_azimuth_about_z_axis_matrix)
+    rot_coord = np.matmul(rot_coord,rotate_by_phi_about_x_axis_matrix)
+    rot_coord = np.matmul(rot_coord,rotate_by_negative_theta_about_y_axis_matrix)
+    rot_coord = np.matmul(rot_coord,translation_to_origin_matrix)
+    rot_coord = np.matmul(rot_coord,coordinates_to_rotate)
+
+    return rot_coord[0:3]
 
 
 # Converts equatorial coordinates of RA/DEC to horizon coordinates of azimuth and
@@ -112,7 +119,7 @@ def eq_to_hor(ra,
 
     # Calculate longitude of substellar point
     longitude_of_substellar_point = new_longitude(longitude_of_observer,-HA*360/24)
-    print(longitude_of_substellar_point)
+    print("lon_ss actual: "+str(longitude_of_substellar_point))
     latitude_of_substellar_point = dec
 
     # Convert angles in degrees to radians.
@@ -150,7 +157,7 @@ def eq_to_hor(ra,
     # If HA is greater than 0, subtract from 360 to get azimuth.
 
     # Project observer to substellar point vector to surface tangent plane at observer.
-    observer_to_substellar_point_vector = position_vector_of_substellar_point - position_vector_of_observer
+    observer_to_substellar_point_vector = position_vector_of_substellar_point - position_vector_of_observer + 1e-12
     surface_normal_to_local_tangent_plane_at_observer = position_vector_of_observer
     projection_of_observer_to_substellar_point_vector_on_surface_tangent_plane_at_observer = calculate_projection_of_vector_on_plane(
             observer_to_substellar_point_vector,
@@ -214,7 +221,7 @@ def hor_to_eq(azimuth,
         time_functions.local_sidereal_time(time_of_observation_in_datetime_format,
                                            local_standard_time_meridian,
                                            longitude_of_observer)
-
+    print("sidereal time: "+str(sidereal_time_at_observer_longitude))
     # Convert all known angles to radians and compute sine and cosine of the angles
     rad_lat_obs = math.radians(latitude_of_observer)
     rad_lon_obs = math.radians(longitude_of_observer)
@@ -225,21 +232,24 @@ def hor_to_eq(azimuth,
 
     # Compute vectors in cartesian coordinates
     position_vector_of_observer = np.array([cos_lat_obs * cos_lon_obs, cos_lat_obs * sin_lon_obs, sin_lat_obs])
+    print("position_vector_of_observer: "+str(position_vector_of_observer))
     surface_normal_to_local_tangent_plane_at_observer = position_vector_of_observer
     position_vector_of_north_pole = np.array([0, 0, 1])
 
     observer_to_north_pole_vector = position_vector_of_north_pole - position_vector_of_observer
-
+    print("observer_to_north_pole_vector: "+str(observer_to_north_pole_vector))
     local_tangent_pointing_north_vector = calculate_projection_of_vector_on_plane(observer_to_north_pole_vector,
                                                                                   surface_normal_to_local_tangent_plane_at_observer)
-
+    print("local_tangent_pointing_north_vector: "+str(local_tangent_pointing_north_vector))
     coordinates_of_local_tangent_pointing_north = position_vector_of_observer + \
                                                   np.array(local_tangent_pointing_north_vector)
 
-    coordinates_of_local_tangent_pointing_north = coordinates_of_local_tangent_pointing_north.tolist()
 
     position_vector_of_tail_of_rotation_axis = position_vector_of_observer
     position_vector_of_tip_of_rotation_axis = 2*position_vector_of_observer
+    print("position_vector_of_tail_of_rotation_axis: "+str(position_vector_of_tail_of_rotation_axis))
+    print("position_vector_of_tip_of_rotation_axis: "+str(position_vector_of_tip_of_rotation_axis))
+    print("coordinates_of_local_tangent_pointing_north: "+str(coordinates_of_local_tangent_pointing_north))
 
     # Find expression for azimuth direction coordinates by rotating about the normal of tangent plane at observer
     azimuth_direction_coordinates = rotate_point_about_arbitrary_axis_in_3d(
@@ -247,58 +257,48 @@ def hor_to_eq(azimuth,
         position_vector_of_tip_of_rotation_axis=position_vector_of_tip_of_rotation_axis,
         coordinates_to_rotate=coordinates_of_local_tangent_pointing_north,
         rotation_angle_in_degrees=-azimuth)
-    azimuth_direction_vector = azimuth_direction_coordinates - position_vector_of_tail_of_rotation_axis
-
-    # Test
-
-    # # Angle between local tangent pointing north and azimuth direction vector
-    # print("azimuth calculated: ")
-    # print(math.degrees(math.acos(np.dot(local_tangent_pointing_north_vector,azimuth_direction_vector)/
-    #           (np.linalg.norm(local_tangent_pointing_north_vector)*np.linalg.norm(azimuth_direction_vector)))))
-    # print()
-    # sys.exit()
+    print("azimuth_direction_coordinates: "+str(azimuth_direction_coordinates))
     # Rotate coordinates of azimuth direction about surface normal at observer by an additional 90 degrees
-    # rotation_angle = -90
-    #
-    # coordinates_of_90_degree_away_from_azimuth = rotate_point_about_arbitrary_axis_in_3d(
-    #     position_vector_of_tail_of_rotation_axis=position_vector_of_tail_of_rotation_axis,
-    #     position_vector_of_tip_of_rotation_axis=position_vector_of_tip_of_rotation_axis,
-    #     coordinates_to_rotate=azimuth_direction_coordinates,
-    #     rotation_angle_in_degrees=rotation_angle)
-    # # vector_of_coordinates_of_90_degree_away_from_azimuth = np.array(coordinates_of_90_degree_away_from_azimuth) - \
-    # #                                                        np.array(position_vector_of_tail_of_rotation_axis)
-    #
-    # # Rotate azimuth_direction_coordinates by elevation angle about the ninety_degree_away_vector axis from_azimuth_vector
-    # substellar_point_coordinates = rotate_point_about_arbitrary_axis_in_3d(
-    #     position_vector_of_tail_of_rotation_axis=position_vector_of_tail_of_rotation_axis,
-    #     position_vector_of_tip_of_rotation_axis=coordinates_of_90_degree_away_from_azimuth,
-    #     coordinates_to_rotate=azimuth_direction_coordinates,
-    #     rotation_angle_in_degrees=altitude)
-    #
-    # substellar_point_vector = substellar_point_coordinates - position_vector_of_tail_of_rotation_axis
-    #
-    # unit_substellar_point_vector = substellar_point_vector / np.linalg.norm(substellar_point_vector)
-    # # print(unit_substellar_point_vector)
-    # # print("altitude calculated: ")
-    # # print(math.degrees(math.acos(np.dot(unit_substellar_point_vector,azimuth_direction_vector)/
-    # #           (np.linalg.norm(unit_substellar_point_vector)*np.linalg.norm(azimuth_direction_vector)))))
-    # # print()
-    # DEC = math.asin(unit_substellar_point_vector[2])
-    #
-    # # Find longitude of substellar point
-    # sin_lon_ss = unit_substellar_point_vector[1] / math.cos(DEC)
-    # lon_ss = math.asin(sin_lon_ss)
-    # lon_ss = math.degrees(lon_ss)
-    # # print("lon_ss "+str(lon_ss))
-    # sidereal_time_at_observer_longitude = time_functions.convert_time_to_decimal(sidereal_time_at_observer_longitude)
-    # RA = sidereal_time_at_observer_longitude - (longitude_of_observer - lon_ss) / 15
-    # if RA < 0:
-    #     RA = RA + 24
-    # elif RA > 24:
-    #     RA = RA - 24
-    # DEC = math.degrees(DEC)
-    #
-    # return RA, DEC
+
+    coordinates_of_90_degree_away_from_azimuth = rotate_point_about_arbitrary_axis_in_3d(
+        position_vector_of_tail_of_rotation_axis=position_vector_of_tail_of_rotation_axis,
+        position_vector_of_tip_of_rotation_axis=position_vector_of_tip_of_rotation_axis,
+        coordinates_to_rotate=azimuth_direction_coordinates,
+        rotation_angle_in_degrees=-90)
+
+    print("coordinates_of_90_degree_away_from_azimuth: "+str(coordinates_of_90_degree_away_from_azimuth))
+    # Rotate azimuth_direction_coordinates by elevation angle about the ninety_degree_away_vector axis from_azimuth_vector
+    substellar_point_coordinates = rotate_point_about_arbitrary_axis_in_3d(
+        position_vector_of_tail_of_rotation_axis=position_vector_of_tail_of_rotation_axis,
+        position_vector_of_tip_of_rotation_axis=coordinates_of_90_degree_away_from_azimuth,
+        coordinates_to_rotate=azimuth_direction_coordinates,
+        rotation_angle_in_degrees=altitude)
+    print("substellar_point_coordinates: "+str(substellar_point_coordinates))
+    substellar_point_vector = substellar_point_coordinates - position_vector_of_tail_of_rotation_axis
+
+    unit_substellar_point_vector = substellar_point_vector / np.linalg.norm(substellar_point_vector)
+    print("unit_substellar_point_vector: "+str(unit_substellar_point_vector))
+    # print(substellar_point_coordinates)
+    # print("altitude calculated: ")
+    # print(math.degrees(math.acos(np.dot(unit_substellar_point_vector,azimuth_direction_vector)/
+    #           (np.linalg.norm(unit_substellar_point_vector)*np.linalg.norm(azimuth_direction_vector)))))
+    # print()
+    DEC = math.asin(unit_substellar_point_vector[2])
+
+    # Find longitude of substellar point
+    sin_lon_ss = unit_substellar_point_vector[1] / math.cos(DEC)
+    lon_ss = math.asin(sin_lon_ss)
+    lon_ss = math.degrees(lon_ss)
+    print("lon_ss calculated: "+str(lon_ss))
+    sidereal_time_at_observer_longitude = time_functions.convert_time_to_decimal(sidereal_time_at_observer_longitude)
+    RA = sidereal_time_at_observer_longitude - (longitude_of_observer - lon_ss) / 15
+    if RA < 0:
+        RA = RA + 24
+    elif RA > 24:
+        RA = RA - 24
+    DEC = math.degrees(DEC)
+
+    return round(RA,5), round(DEC,5)
 
 # Calculates new longitude from current longitude based on delta longitude
 def new_longitude(longitude_in_degrees,
