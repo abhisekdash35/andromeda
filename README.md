@@ -20,7 +20,7 @@ The functions implemented till now are listed below
   
   _Calculates projection of a vector on a plane given by its surface normal._
 
-  _Parameters:_ 
+  **_Parameters:_**
   
   _vector: The input vector._
 
