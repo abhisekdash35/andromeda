@@ -56,74 +56,110 @@ local_standard_time_meridian: The local standard time meridian. For e.g +82.5 fo
 ##### returns:
 The azimuth and altitude at observer's location.
 
-#### * coordinate_transformations.hor_to_eq(azimuth,
-####              altitude,
-####              time_of_observation_in_datetime_format,
-####              latitude_of_observer,
-####              longitude_of_observer,
-####              local_standard_time_meridian)
+####  coordinate_transformations.hor_to_eq(azimuth, altitude,  time_of_observation_in_datetime_format, latitude_of_observer, longitude_of_observer, local_standard_time_meridian)
+
 Converts horizon coordinates of right ascension and declination to horizon coordinates of azimuth ad elevation.
+
 ##### Parameters: 
+
 azimuth: The azimuth angle of the object at observer's location.
+
 altitude: The altitude angle of the object at observer's location.
+
 time_of_observation_in_datetime_format: The local time of observation in standard datetime format.
+
 latitude_of_observer: Latitude of observer.
+
 longitude_of_observer: Longitude of observer.
+
 local_standard_time_meridian: The local standard time meridian. For e.g +82.5 for Indian Standard Time
+
 ##### returns:
+
 The right ascension and declination of the object.
 
 
 ### 2. time_functions.py
+
 Functions
-#### * time_functions.is_leap_year(year)
+####  time_functions.is_leap_year(year)
+
 Checks whether year passed is a leap year or not.
+
 ##### Parameters: 
+
 year
+
 ##### returns:
+
 True if year is leap year else returns False
 
-#### * time_functions.eot_offset(local_datetime_in_datetime_format)
+#### time_functions.eot_offset(local_datetime_in_datetime_format)
+
 Calculates the equation of time offset depending on the day of the year.
+
 ##### Parameters: 
+
 local_datetime_in_datetime_format: Local date and time in standard datetime format 
+
 ##### returns:
+
 EOT offset in minutes.
 
-#### * time_functions.eot_offset(local_datetime_in_datetime_format)
+#### time_functions.eot_offset(local_datetime_in_datetime_format)
+
 Calculates the equation of time offset depending on the day of the year.
+
 ##### Parameters: 
+
 local_datetime_in_datetime_format: Local date and time in standard datetime format 
+
 ##### returns:
+
 EOT offset in minutes.
 
-#### * local_solar_time(local_date_and_clock_time_in_datetime_format,
-####                    local_standard_time_meridian,
-####                    longitude_of_observation,
-####                    consider_eot_boolean)
+#### local_solar_time(local_date_and_clock_time_in_datetime_format, local_standard_time_meridian, longitude_of_observation, consider_eot_boolean)
+
 Calculates the local solar time.
+
 ##### Parameters: 
+
 local_date_and_clock_time_in_datetime_format: Local date and clock time in standard datetime format.
+
 local_standard_time_meridian: The standard time meridian (for e.g. +82.5 for Indian Standard Time)
+
 longitude_of_observation: The longitude at which solar time is required. Range is -180 to +180
+
 consider_eot_boolean: Whether to consider equation of time offset.
+
 ##### returns:
+
 The local solar time at observer position.
 
-#### * local_sidereal_time(local_date_and_clock_time_in_datetime_format,
-####                        local_standard_time_meridian,
-####                        longitude_of_observation)
+#### local_sidereal_time(local_date_and_clock_time_in_datetime_format, local_standard_time_meridian, longitude_of_observation)
+
 Calculates the local sidereal time.
-##### Parameters: 
+
+##### Parameters:
+
 local_date_and_clock_time_in_datetime_format: Local date and clock time in standard datetime format.
+
 local_standard_time_meridian: The standard time meridian (for e.g. +82.5 for Indian Standard Time)
+
 longitude_of_observation: The longitude at which solar time is required. Range is -180 to +180
+
 ##### returns:
+
 The local sidereal time at observer position.
 
-#### > convert_time_to_decimal(time_in_time_format)
+####  convert_time_to_decimal(time_in_time_format)
+
 Converts time in time or datetime format to decimal. For e.g 2020-12-15 23:30:00 is converted to 23.5
+
 ##### Parameters: 
-time_in_time_format: Local date and clock time in standard datetime format. Also accepts time
+
+time_in_time_format: Local date and clock time in standard datetime format. Also accepts time in time format.
+
 ##### returns:
+
 The time in decimal.
