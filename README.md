@@ -50,136 +50,124 @@ The functions implemented till now are listed below
 
 * coordinate_transformations.eq_to_hor(ra, dec, time_of_observation_in_datetime_format, latitude_of_observer, longitude_of_observer, local_standard_time_meridian)
 
-_Converts equatorial coordinates of right ascension and declination to horizon coordinates of azimuth ad elevation._
+    _Converts equatorial coordinates of right ascension and declination to horizon coordinates of azimuth ad elevation._
 
-**_Parameters:_** 
+    **_Parameters:_** 
 
-_ra: The right ascension of the object in decimal hours between 0 and 24._
+    _ra: The right ascension of the object in decimal hours between 0 and 24._
 
-_dec: The declination of the object in degrees. Negative for southern latitudes._
+    _dec: The declination of the object in degrees. Negative for southern latitudes._
 
-_time_of_observation_in_datetime_format: The local time of observation in standard datetime format._
+    _time_of_observation_in_datetime_format: The local time of observation in standard datetime format._
 
-_latitude_of_observer: Latitude of observer._
+    _latitude_of_observer: Latitude of observer._
 
-longitude_of_observer: Longitude of observer.
+    longitude_of_observer: Longitude of observer.
 
-_local_standard_time_meridian: The local standard time meridian. For e.g +82.5 for Indian Standard Time_
+    _local_standard_time_meridian: The local standard time meridian. For e.g +82.5 for Indian Standard Time_
 
-**_returns:_**
+    **_returns:_**
 
-_The azimuth and altitude at observer's location._
+    _The azimuth and altitude at observer's location._
 
 * coordinate_transformations.hor_to_eq(azimuth, altitude,  time_of_observation_in_datetime_format, latitude_of_observer, longitude_of_observer, local_standard_time_meridian)
 
-_Converts equatorial coordinates of right ascension and declination to horizon coordinates of azimuth ad elevation._
+    _Converts equatorial coordinates of right ascension and declination to horizon coordinates of azimuth ad elevation._
 
-**_Parameters:_** 
+    **_Parameters:_** 
 
-_azimuth: The azimuth angle of the object at observer's location._
+    _azimuth: The azimuth angle of the object at observer's location._
 
-_altitude: The altitude angle of the object at observer's location._
+    _altitude: The altitude angle of the object at observer's location._
 
-_time_of_observation_in_datetime_format: The local time of observation in standard datetime format._
+    _time_of_observation_in_datetime_format: The local time of observation in standard datetime format._
 
-_latitude_of_observer: Latitude of observer._
+    _latitude_of_observer: Latitude of observer._
 
-_longitude_of_observer: Longitude of observer._
+    _longitude_of_observer: Longitude of observer._
 
-_local_standard_time_meridian: The local standard time meridian. For e.g +82.5 for Indian Standard Time_
+    _local_standard_time_meridian: The local standard time meridian. For e.g +82.5 for Indian Standard Time_
 
-**_returns:_**
+    **_returns:_**
 
-_The right ascension and declination of the object._
+    _The right ascension and declination of the object._
 
 
 ### 2. time_functions.py
 
-This file deals with the time related functionalities in astronomy such as solar time, sidereal time etc.
+  This file deals with the time related functionalities in astronomy such as solar time, sidereal time etc.
 
-The functions implemented till now are listed below.
+  The functions implemented till now are listed below.
 
-####  time_functions.is_leap_year(year)
+  2.1 time_functions.is_leap_year(year)
 
-Checks whether year passed is a leap year or not.
+    _Checks whether year passed is a leap year or not._
 
-##### Parameters: 
+    **_Parameters:_** 
 
-year
+    _year_
 
-##### returns:
+    **_returns:_**
 
-True if year is leap year else returns False
+    _True if year is leap year else returns False_
 
-#### time_functions.eot_offset(local_datetime_in_datetime_format)
+  2.2 time_functions.eot_offset(local_datetime_in_datetime_format)
 
-Calculates the equation of time offset depending on the day of the year.
+    _Calculates the equation of time offset depending on the day of the year._
 
-##### Parameters: 
+    **_Parameters:_** 
 
-local_datetime_in_datetime_format: Local date and time in standard datetime format 
+    _local_datetime_in_datetime_format: Local date and time in standard datetime format_
 
-##### returns:
+    **_returns:_**
 
-EOT offset in minutes.
+    _EOT offset in minutes._
 
-#### time_functions.eot_offset(local_datetime_in_datetime_format)
+  2.4 local_solar_time(local_date_and_clock_time_in_datetime_format, local_standard_time_meridian, longitude_of_observation, consider_eot_boolean)
 
-Calculates the equation of time offset depending on the day of the year.
+    _Calculates the local solar time._
 
-##### Parameters: 
+    **_Parameters:_** 
 
-local_datetime_in_datetime_format: Local date and time in standard datetime format 
+    _local_date_and_clock_time_in_datetime_format: Local date and clock time in standard datetime format._
 
-##### returns:
+    _local_standard_time_meridian: The standard time meridian (for e.g. +82.5 for Indian Standard Time)_
 
-EOT offset in minutes.
+    _longitude_of_observation: The longitude at which solar time is required. Range is -180 to +180_
 
-#### local_solar_time(local_date_and_clock_time_in_datetime_format, local_standard_time_meridian, longitude_of_observation, consider_eot_boolean)
+    _consider_eot_boolean: Whether to consider equation of time offset._
 
-Calculates the local solar time.
+    **_returns:_**
 
-##### Parameters: 
+    _The local solar time at observer position._
 
-local_date_and_clock_time_in_datetime_format: Local date and clock time in standard datetime format.
+  2.5 local_sidereal_time(local_date_and_clock_time_in_datetime_format, local_standard_time_meridian, longitude_of_observation)
 
-local_standard_time_meridian: The standard time meridian (for e.g. +82.5 for Indian Standard Time)
+    _Calculates the local sidereal time._
 
-longitude_of_observation: The longitude at which solar time is required. Range is -180 to +180
+    **_Parameters:_** 
 
-consider_eot_boolean: Whether to consider equation of time offset.
+    _local_date_and_clock_time_in_datetime_format: Local date and clock time in standard datetime format._
 
-##### returns:
+    _local_standard_time_meridian: The standard time meridian (for e.g. +82.5 for Indian Standard Time)_
 
-The local solar time at observer position.
+    _longitude_of_observation: The longitude at which solar time is required. Range is -180 to +180_
 
-#### local_sidereal_time(local_date_and_clock_time_in_datetime_format, local_standard_time_meridian, longitude_of_observation)
+    **_returns:_**
 
-Calculates the local sidereal time.
+    _The local sidereal time at observer position._
 
-##### Parameters:
+  2.6 convert_time_to_decimal(time_in_time_format)
 
-local_date_and_clock_time_in_datetime_format: Local date and clock time in standard datetime format.
+    _Converts time in time or datetime format to decimal. For e.g 2020-12-15 23:30:00 is converted to 23.5_
 
-local_standard_time_meridian: The standard time meridian (for e.g. +82.5 for Indian Standard Time)
+    **_Parameters:_**  
 
-longitude_of_observation: The longitude at which solar time is required. Range is -180 to +180
+    _time_in_time_format: Local date and clock time in standard datetime format. Also accepts time in time format._
 
-##### returns:
+    **_returns:_**
 
-The local sidereal time at observer position.
-
-####  convert_time_to_decimal(time_in_time_format)
-
-Converts time in time or datetime format to decimal. For e.g 2020-12-15 23:30:00 is converted to 23.5
-
-##### Parameters: 
-
-time_in_time_format: Local date and clock time in standard datetime format. Also accepts time in time format.
-
-##### returns:
-
-The time in decimal.
+    _The time in decimal._
 
 ### 3. final_variables.py
-This file contains variables which are required for the internal workings of the library.
+  _This file contains variables which are required for the internal workings of the library._
