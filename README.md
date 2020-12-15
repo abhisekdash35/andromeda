@@ -16,7 +16,7 @@ This file contains functions related to transformations from one coordinate syst
 
 The functions implemented till now are listed below
 
-1.1 calculate_projection_of_vector_on_plane(vector, surface_normal_of_plane)
+#### 1.1. calculate_projection_of_vector_on_plane(vector, surface_normal_of_plane)
   
   _Calculates projection of a vector on a plane given by its surface normal._
 
@@ -30,7 +30,7 @@ The functions implemented till now are listed below
   
   _The projection of vector on the plane defined by its surface normal._
 
-1.2 rotate_point_about_arbitrary_axis_in_3d(position_vector_of_tail_of_rotation_axis, position_vector_of_tip_of_rotation_axis, coordinates_to_rotate, rotation_angle_in_degrees)
+#### 1.2. rotate_point_about_arbitrary_axis_in_3d(position_vector_of_tail_of_rotation_axis, position_vector_of_tip_of_rotation_axis, coordinates_to_rotate, rotation_angle_in_degrees)
 
   _Rotates a point about an arbitrary vector in 3D. Returns coordinates of rotated points._
 
@@ -48,7 +48,7 @@ The functions implemented till now are listed below
 
   _The rotated coordinates._
 
-1.3 coordinate_transformations.eq_to_hor(ra, dec, time_of_observation_in_datetime_format, latitude_of_observer, longitude_of_observer, local_standard_time_meridian)
+#### 1.3. coordinate_transformations.eq_to_hor(ra, dec, time_of_observation_in_datetime_format, latitude_of_observer, longitude_of_observer, local_standard_time_meridian)
 
   _Converts equatorial coordinates of right ascension and declination to horizon coordinates of azimuth ad elevation._
 
@@ -70,7 +70,7 @@ The functions implemented till now are listed below
 
   _The azimuth and altitude at observer's location._
 
-1.4 coordinate_transformations.hor_to_eq(azimuth, altitude,  time_of_observation_in_datetime_format, latitude_of_observer, longitude_of_observer, local_standard_time_meridian)
+#### 1.4. coordinate_transformations.hor_to_eq(azimuth, altitude,  time_of_observation_in_datetime_format, latitude_of_observer, longitude_of_observer, local_standard_time_meridian)
 
   _Converts equatorial coordinates of right ascension and declination to horizon coordinates of azimuth ad elevation._
 
@@ -99,7 +99,7 @@ The functions implemented till now are listed below
 
   The functions implemented till now are listed below.
 
-  2.1 time_functions.is_leap_year(year)
+  #### 2.1 is_leap_year(year)
 
   _Checks whether year passed is a leap year or not._
 
@@ -111,7 +111,7 @@ The functions implemented till now are listed below
 
   _True if year is leap year else returns False_
 
-  2.2 eot_offset(local_datetime_in_datetime_format)
+  #### 2.2 eot_offset(local_datetime_in_datetime_format)
 
   _Calculates the equation of time offset depending on the day of the year._
 
@@ -123,7 +123,7 @@ The functions implemented till now are listed below
 
   _EOT offset in minutes._
 
-  2.3 local_solar_time(local_date_and_clock_time_in_datetime_format, local_standard_time_meridian, longitude_of_observation, consider_eot_boolean)
+  #### 2.3 local_solar_time(local_date_and_clock_time_in_datetime_format, local_standard_time_meridian, longitude_of_observation, consider_eot_boolean)
 
   _Calculates the local solar time._
 
@@ -141,7 +141,7 @@ The functions implemented till now are listed below
 
   _The local solar time at observer position._
 
-  2.4 local_sidereal_time(local_date_and_clock_time_in_datetime_format, local_standard_time_meridian, longitude_of_observation)
+  #### 2.4 local_sidereal_time(local_date_and_clock_time_in_datetime_format, local_standard_time_meridian, longitude_of_observation)
 
   _Calculates the local sidereal time._
 
@@ -157,7 +157,7 @@ The functions implemented till now are listed below
 
   _The local sidereal time at observer position._
 
-  2.5 convert_time_to_decimal(time_in_time_format)
+  #### 2.5 convert_time_to_decimal(time_in_time_format)
 
   _Converts time in time or datetime format to decimal. For e.g 2020-12-15 23:30:00 is converted to 23.5_
 
