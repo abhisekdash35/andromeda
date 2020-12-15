@@ -5,7 +5,7 @@ A python library for astronomers (Under Construction)
 
 ### 1. coordinate_transformations.py
 
-Functions
+Functions in this file:
 #### coordinate_transformations.calculate_projection_of_vector_on_plane(vector, surface_normal_of_plane)
 
 Calculates projection of a vector on a plane given by its surface normal.
@@ -81,7 +81,7 @@ The right ascension and declination of the object.
 
 ### 2. time_functions.py
 
-Functions
+Functions in this file:
 ####  time_functions.is_leap_year(year)
 
 Checks whether year passed is a leap year or not.
