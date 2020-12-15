@@ -6,8 +6,8 @@ A python library for astronomers (Under Construction)
 ### 1. coordinate_transformations.py
 
 Functions
-```
-#### > coordinate_transformations.calculate_projection_of_vector_on_plane(vector, surface_normal_of_plane)
+
+#### * coordinate_transformations.calculate_projection_of_vector_on_plane(vector, surface_normal_of_plane)
 Calculates projection of a vector on a plane given by its surface normal.
 ##### Parameters: 
 vector: The input vector
@@ -15,7 +15,7 @@ surface_normal_of_plane: The surface normal of the plane on which the projection
 ##### returns:
 The projection of vector on the plane defined by its surface normal.
 
-#### > coordinate_transformations.rotate_point_about_arbitrary_axis_in_3d(position_vector_of_tail_of_rotation_axis,
+#### * coordinate_transformations.rotate_point_about_arbitrary_axis_in_3d(position_vector_of_tail_of_rotation_axis,
 ####                                                                      position_vector_of_tip_of_rotation_axis,
 ####                                                                      coordinates_to_rotate,
 ####                                                                      rotation_angle_in_degrees)
@@ -28,7 +28,7 @@ rotation_angle_in_degrees: Rotation angle in degrees.
 ##### returns:
 The rotated coordinates.
 
-#### > coordinate_transformations.eq_to_hor(ra,
+#### * coordinate_transformations.eq_to_hor(ra,
 ####                                        dec,
 ####                                        time_of_observation_in_datetime_format,
 ####                                        latitude_of_observer,
@@ -45,7 +45,7 @@ local_standard_time_meridian: The local standard time meridian. For e.g +82.5 fo
 ##### returns:
 The azimuth and altitude at observer's location.
 
-#### > coordinate_transformations.hor_to_eq(azimuth,
+#### * coordinate_transformations.hor_to_eq(azimuth,
 ####              altitude,
 ####              time_of_observation_in_datetime_format,
 ####              latitude_of_observer,
@@ -61,32 +61,32 @@ longitude_of_observer: Longitude of observer.
 local_standard_time_meridian: The local standard time meridian. For e.g +82.5 for Indian Standard Time
 ##### returns:
 The right ascension and declination of the object.
-```
+
 
 ### 2. time_functions.py
 Functions
-#### > time_functions.is_leap_year(year)
+#### * time_functions.is_leap_year(year)
 Checks whether year passed is a leap year or not.
 ##### Parameters: 
 year
 ##### returns:
 True if year is leap year else returns False
 
-#### > time_functions.eot_offset(local_datetime_in_datetime_format)
+#### * time_functions.eot_offset(local_datetime_in_datetime_format)
 Calculates the equation of time offset depending on the day of the year.
 ##### Parameters: 
 local_datetime_in_datetime_format: Local date and time in standard datetime format 
 ##### returns:
 EOT offset in minutes.
 
-#### > time_functions.eot_offset(local_datetime_in_datetime_format)
+#### * time_functions.eot_offset(local_datetime_in_datetime_format)
 Calculates the equation of time offset depending on the day of the year.
 ##### Parameters: 
 local_datetime_in_datetime_format: Local date and time in standard datetime format 
 ##### returns:
 EOT offset in minutes.
 
-#### > local_solar_time(local_date_and_clock_time_in_datetime_format,
+#### * local_solar_time(local_date_and_clock_time_in_datetime_format,
 ####                    local_standard_time_meridian,
 ####                    longitude_of_observation,
 ####                    consider_eot_boolean)
@@ -99,7 +99,7 @@ consider_eot_boolean: Whether to consider equation of time offset.
 ##### returns:
 The local solar time at observer position.
 
-#### > local_sidereal_time(local_date_and_clock_time_in_datetime_format,
+#### * local_sidereal_time(local_date_and_clock_time_in_datetime_format,
 ####                        local_standard_time_meridian,
 ####                        longitude_of_observation)
 Calculates the local sidereal time.
