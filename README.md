@@ -10,8 +10,10 @@ Functions
 
 Calculates projection of a vector on a plane given by its surface normal.
 ##### Parameters: 
-vector: The input vector
+vector: The input vector.
+
 surface_normal_of_plane: The surface normal of the plane on which the projection of vector is sought.
+
 ##### returns:
 The projection of vector on the plane defined by its surface normal.
 
