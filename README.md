@@ -7,7 +7,7 @@ A python library for astronomers (Under Construction)
 
 Functions
 
-####  coordinate_transformations.calculate_projection_of_vector_on_plane(vector, surface_normal_of_plane)
+####  + coordinate_transformations.calculate_projection_of_vector_on_plane(vector, surface_normal_of_plane)
 Calculates projection of a vector on a plane given by its surface normal.
 ##### Parameters: 
 vector: The input vector
