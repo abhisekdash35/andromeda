@@ -58,7 +58,7 @@ The azimuth and altitude at observer's location.
 
 ####  coordinate_transformations.hor_to_eq(azimuth, altitude,  time_of_observation_in_datetime_format, latitude_of_observer, longitude_of_observer, local_standard_time_meridian)
 
-Converts horizon coordinates of right ascension and declination to horizon coordinates of azimuth ad elevation.
+Converts equatorial coordinates of right ascension and declination to horizon coordinates of azimuth ad elevation.
 
 ##### Parameters: 
 
