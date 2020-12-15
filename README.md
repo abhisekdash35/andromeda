@@ -17,6 +17,7 @@ This file contains functions related to transformations from one coordinate syst
 The functions implemented till now are listed below
 
 * coordinate_transformations . calculate_projection_of_vector_on_plane(vector, surface_normal_of_plane)
+  
   Calculates projection of a vector on a plane given by its surface normal.
 
   * Parameters: 
