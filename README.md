@@ -6,7 +6,8 @@ A python library for astronomers (Under Construction)
 ### 1. coordinate_transformations.py
 
 Functions
-+   coordinate_transformations.calculate_projection_of_vector_on_plane(vector, surface_normal_of_plane)
+#### coordinate_transformations.calculate_projection_of_vector_on_plane(vector, surface_normal_of_plane)
+
 Calculates projection of a vector on a plane given by its surface normal.
 ##### Parameters: 
 vector: The input vector
@@ -24,12 +25,7 @@ rotation_angle_in_degrees: Rotation angle in degrees.
 ##### returns:
 The rotated coordinates.
 
-#### * coordinate_transformations.eq_to_hor(ra,
-####                                        dec,
-####                                        time_of_observation_in_datetime_format,
-####                                        latitude_of_observer,
-####                                        longitude_of_observer,
-####                                        local_standard_time_meridian)
+#### coordinate_transformations.eq_to_hor(ra, dec, time_of_observation_in_datetime_format, latitude_of_observer, longitude_of_observer, local_standard_time_meridian)
 Converts equatorial coordinates of right ascension and declination to horizon coordinates of azimuth ad elevation.
 ##### Parameters: 
 ra: The right ascension of the object in decimal hours between 0 and 24. 
