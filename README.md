@@ -1,5 +1,8 @@
-# project_andromeda
-A python library for astronomers (Under Construction)
+# project_andromeda 
+(Under construction)
+A python library for astronomers. Borne simply out of boredom and nothing much to do in the pandemic stricken year of 2020, project_andromeda is a humble library written to satiate my need for mathematical gratification. I started working on it after planning to buy a telescope. The question that spurred the development of this library was "at which direction do I need to point to see a certain celestial object ?"
+
+Currently the library has 3 files and 10 functions and are listed below.
 
 ## Files:
 
@@ -21,7 +24,7 @@ surface_normal_of_plane: The surface normal of the plane on which the projection
 ##### returns:
 The projection of vector on the plane defined by its surface normal.
 
-####  *coordinate_transformations.rotate_point_about_arbitrary_axis_in_3d(position_vector_of_tail_of_rotation_axis, position_vector_of_tip_of_rotation_axis, coordinates_to_rotate, rotation_angle_in_degrees)
+####  coordinate_transformations.rotate_point_about_arbitrary_axis_in_3d(position_vector_of_tail_of_rotation_axis, position_vector_of_tip_of_rotation_axis, coordinates_to_rotate, rotation_angle_in_degrees)
 
 Rotates a point about an arbitrary vector in 3D. Returns coordinates of rotated points.
 ##### Parameters:
@@ -38,7 +41,7 @@ rotation_angle_in_degrees: Rotation angle in degrees.
 
 The rotated coordinates.
 
-#### *coordinate_transformations.eq_to_hor(ra, dec, time_of_observation_in_datetime_format, latitude_of_observer, longitude_of_observer, local_standard_time_meridian)
+#### coordinate_transformations.eq_to_hor(ra, dec, time_of_observation_in_datetime_format, latitude_of_observer, longitude_of_observer, local_standard_time_meridian)
 
 Converts equatorial coordinates of right ascension and declination to horizon coordinates of azimuth ad elevation.
 
@@ -59,7 +62,7 @@ local_standard_time_meridian: The local standard time meridian. For e.g +82.5 fo
 ##### returns:
 The azimuth and altitude at observer's location.
 
-####  *coordinate_transformations.hor_to_eq(azimuth, altitude,  time_of_observation_in_datetime_format, latitude_of_observer, longitude_of_observer, local_standard_time_meridian)
+####  coordinate_transformations.hor_to_eq(azimuth, altitude,  time_of_observation_in_datetime_format, latitude_of_observer, longitude_of_observer, local_standard_time_meridian)
 
 Converts equatorial coordinates of right ascension and declination to horizon coordinates of azimuth ad elevation.
 
@@ -88,7 +91,7 @@ This file deals with the time related functionalities in astronomy such as solar
 
 The functions implemented till now are listed below.
 
-####  *time_functions.is_leap_year(year)
+####  time_functions.is_leap_year(year)
 
 Checks whether year passed is a leap year or not.
 
@@ -100,7 +103,7 @@ year
 
 True if year is leap year else returns False
 
-#### *time_functions.eot_offset(local_datetime_in_datetime_format)
+#### time_functions.eot_offset(local_datetime_in_datetime_format)
 
 Calculates the equation of time offset depending on the day of the year.
 
@@ -112,7 +115,7 @@ local_datetime_in_datetime_format: Local date and time in standard datetime form
 
 EOT offset in minutes.
 
-#### *time_functions.eot_offset(local_datetime_in_datetime_format)
+#### time_functions.eot_offset(local_datetime_in_datetime_format)
 
 Calculates the equation of time offset depending on the day of the year.
 
@@ -124,7 +127,7 @@ local_datetime_in_datetime_format: Local date and time in standard datetime form
 
 EOT offset in minutes.
 
-#### *local_solar_time(local_date_and_clock_time_in_datetime_format, local_standard_time_meridian, longitude_of_observation, consider_eot_boolean)
+#### local_solar_time(local_date_and_clock_time_in_datetime_format, local_standard_time_meridian, longitude_of_observation, consider_eot_boolean)
 
 Calculates the local solar time.
 
@@ -142,7 +145,7 @@ consider_eot_boolean: Whether to consider equation of time offset.
 
 The local solar time at observer position.
 
-#### *local_sidereal_time(local_date_and_clock_time_in_datetime_format, local_standard_time_meridian, longitude_of_observation)
+#### local_sidereal_time(local_date_and_clock_time_in_datetime_format, local_standard_time_meridian, longitude_of_observation)
 
 Calculates the local sidereal time.
 
@@ -158,7 +161,7 @@ longitude_of_observation: The longitude at which solar time is required. Range i
 
 The local sidereal time at observer position.
 
-####  *convert_time_to_decimal(time_in_time_format)
+####  convert_time_to_decimal(time_in_time_format)
 
 Converts time in time or datetime format to decimal. For e.g 2020-12-15 23:30:00 is converted to 23.5
 
