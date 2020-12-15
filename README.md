@@ -37,5 +37,20 @@ consider_eot_boolean: Whether to consider equation of time offset.
 ##### returns:
 The local solar time at observer position.
 
+#### local_sidereal_time(local_date_and_clock_time_in_datetime_format,
+####                        local_standard_time_meridian,
+####                        longitude_of_observation)
+Calculates the local sidereal time.
+##### Parameters: 
+local_date_and_clock_time_in_datetime_format: Local date and clock time in standard datetime format.
+local_standard_time_meridian: The standard time meridian (for e.g. +82.5 for Indian Standard Time)
+longitude_of_observation: The longitude at which solar time is required. Range is -180 to +180
+##### returns:
+The local sidereal time at observer position.
 
-
+#### convert_time_to_decimal(time_in_time_format)
+Converts time in time or datetime format to decimal. For e.g 2020-12-15 23:30:00 is converted to 23.5
+##### Parameters: 
+time_in_time_format: Local date and clock time in standard datetime format. Also accepts time
+##### returns:
+The time in decimal.
