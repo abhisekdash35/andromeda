@@ -1,8 +1,12 @@
 # project_andromeda 
 (Under construction)
-A python library for astronomers. Borne simply out of boredom and nothing much to do in the pandemic stricken year of 2020, project_andromeda is a humble library written to satiate my need for mathematical gratification. I started working on it after planning to buy a telescope. The question that spurred the development of this library was "at which direction do I need to point to see a certain celestial object ?"
 
-Currently the library has 3 files and 10 functions and are listed below.
+A python library for astronomers. 
+
+Borne simply out of boredom and nothing much to do in the pandemic stricken year of 2020, project_andromeda is a humble library written to satiate my need for mathematical gratification. I started working on it after planning to buy a telescope. The question that spurred the development of this library was "at which direction do I need to point to see a certain celestial object ?". 
+
+The library primarily uses elementary vector algebra to convert between horizon and equatorial coordinate systems and vice versa. The library also calculates things like sidereal time and solar time.
+Currently the library has 3 files with 10 functions. It has been tested with calculators available online and other third party libraries.
 
 ## Files:
 
