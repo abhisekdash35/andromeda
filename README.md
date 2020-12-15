@@ -32,21 +32,21 @@ The functions implemented till now are listed below
 
 * coordinate_transformations.rotate_point_about_arbitrary_axis_in_3d(position_vector_of_tail_of_rotation_axis, position_vector_of_tip_of_rotation_axis, coordinates_to_rotate, rotation_angle_in_degrees)
 
-_Rotates a point about an arbitrary vector in 3D. Returns coordinates of rotated points._
+    _Rotates a point about an arbitrary vector in 3D. Returns coordinates of rotated points._
 
-**_Parameters:_**
+    **_Parameters:_**
 
-_position_vector_of_tail_of_rotation_axis: The position vector of the tail of rotation axis._
+    _position_vector_of_tail_of_rotation_axis: The position vector of the tail of rotation axis._
 
-_position_vector_of_tip_of_rotation_axis: The position vector of the tip of rotation axis._
+    _position_vector_of_tip_of_rotation_axis: The position vector of the tip of rotation axis._
 
-_coordinates_to_rotate: Coordinates to rotate_
+    _coordinates_to_rotate: Coordinates to rotate_
 
-_rotation_angle_in_degrees: Rotation angle in degrees._
+    _rotation_angle_in_degrees: Rotation angle in degrees._
 
-**_returns:_**
+    **_returns:_**
 
-_The rotated coordinates._
+    _The rotated coordinates._
 
 * coordinate_transformations.eq_to_hor(ra, dec, time_of_observation_in_datetime_format, latitude_of_observer, longitude_of_observer, local_standard_time_meridian)
 
