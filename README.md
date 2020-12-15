@@ -5,13 +5,13 @@ A python library for astronomers (Under Construction)
 
 ### 1. coordinate_transformations.py
 
-#### calculate_projection_of_vector_on_plane(vector, surface_normal_of_plane)
-Calculates projection of a vector on a plane given by its surface normal.
-##### Parameters: 
-vector: The input vector
-surface_normal_of_plane: The surface normal of the plane on which the projection of vector is sought.
-##### returns:
-True if year is leap year else returns False
+  #### calculate_projection_of_vector_on_plane(vector, surface_normal_of_plane)
+  Calculates projection of a vector on a plane given by its surface normal.
+  ##### Parameters: 
+  vector: The input vector
+  surface_normal_of_plane: The surface normal of the plane on which the projection of vector is sought.
+  ##### returns:
+  True if year is leap year else returns False
 
 
 ### 2. time_functions.py
