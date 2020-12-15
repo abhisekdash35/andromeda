@@ -169,3 +169,6 @@ time_in_time_format: Local date and clock time in standard datetime format. Also
 ##### returns:
 
 The time in decimal.
+
+### 3. final_variables.py
+This file contains variables which are required for the internal workings of the library.
