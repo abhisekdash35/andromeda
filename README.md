@@ -9,6 +9,7 @@ Functions
 #### coordinate_transformations.calculate_projection_of_vector_on_plane(vector, surface_normal_of_plane)
 
 Calculates projection of a vector on a plane given by its surface normal.
+
 ##### Parameters: 
 vector: The input vector.
 
@@ -18,24 +19,40 @@ surface_normal_of_plane: The surface normal of the plane on which the projection
 The projection of vector on the plane defined by its surface normal.
 
 ####  coordinate_transformations.rotate_point_about_arbitrary_axis_in_3d(position_vector_of_tail_of_rotation_axis, position_vector_of_tip_of_rotation_axis, coordinates_to_rotate, rotation_angle_in_degrees)
+
 Rotates a point about an arbitrary vector in 3D. Returns coordinates of rotated points.
-##### Parameters: 
+##### Parameters:
+
 position_vector_of_tail_of_rotation_axis: The position vector of the tail of rotation axis.
+
 position_vector_of_tip_of_rotation_axis: The position vector of the tip of rotation axis.
+
 coordinates_to_rotate: Coordinates to rotate
+
 rotation_angle_in_degrees: Rotation angle in degrees.
+
 ##### returns:
+
 The rotated coordinates.
 
 #### coordinate_transformations.eq_to_hor(ra, dec, time_of_observation_in_datetime_format, latitude_of_observer, longitude_of_observer, local_standard_time_meridian)
+
 Converts equatorial coordinates of right ascension and declination to horizon coordinates of azimuth ad elevation.
+
 ##### Parameters: 
+
 ra: The right ascension of the object in decimal hours between 0 and 24. 
+
 dec: The declination of the object in degrees. Negative for southern latitudes.
+
 time_of_observation_in_datetime_format: The local time of observation in standard datetime format.
+
 latitude_of_observer: Latitude of observer.
+
 longitude_of_observer: Longitude of observer.
+
 local_standard_time_meridian: The local standard time meridian. For e.g +82.5 for Indian Standard Time
+
 ##### returns:
 The azimuth and altitude at observer's location.
 
