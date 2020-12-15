@@ -18,17 +18,17 @@ The functions implemented till now are listed below
 
 #### 1.1. calculate_projection_of_vector_on_plane(vector, surface_normal_of_plane)
   
-  _Calculates projection of a vector on a plane given by its surface normal._
+    _Calculates projection of a vector on a plane given by its surface normal._
 
-  **_Parameters:_**
-  
-  _vector: The input vector._
+    **_Parameters:_**
 
-  _surface_normal_of_plane: The surface normal of the plane on which the projection of vector is sought._
+    _vector: The input vector._
 
-  **_returns:_**
-  
-  _The projection of vector on the plane defined by its surface normal._
+    _surface_normal_of_plane: The surface normal of the plane on which the projection of vector is sought._
+
+    **_returns:_**
+
+    _The projection of vector on the plane defined by its surface normal._
 
 #### 1.2. rotate_point_about_arbitrary_axis_in_3d(position_vector_of_tail_of_rotation_axis, position_vector_of_tip_of_rotation_axis, coordinates_to_rotate, rotation_angle_in_degrees)
 
