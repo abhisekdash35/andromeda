@@ -5,6 +5,9 @@ A python library for astronomers (Under Construction)
 
 ### 1. coordinate_transformations.py
 
+This file contains functions related to transformations from one coordinate system to another. (Mainly from horizon coordinates of azimuth and altitude to equatorial coordinates of declination and right ascension and vice versa.). 
+
+The functions implemented till now are listed below
 Functions in this file:
 ####  *coordinate_transformations.calculate_projection_of_vector_on_plane(vector, surface_normal_of_plane)
 
@@ -80,6 +83,10 @@ The right ascension and declination of the object.
 
 
 ### 2. time_functions.py
+
+This file deals with the time related functionalities in astronomy such as solar time, sidereal time etc.
+
+The functions implemented till now are listed below.
 
 Functions in this file:
 ####  *time_functions.is_leap_year(year)
