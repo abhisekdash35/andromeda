@@ -18,15 +18,17 @@ The functions implemented till now are listed below
 
 * coordinate_transformations . calculate_projection_of_vector_on_plane(vector, surface_normal_of_plane)
   
-  Calculates projection of a vector on a plane given by its surface normal.
+  _Calculates projection of a vector on a plane given by its surface normal.
 
-  Parameters: 
-  vector: The input vector.
+  _Parameters: 
+  
+  _vector: The input vector.
 
-  surface_normal_of_plane: The surface normal of the plane on which the projection of vector is sought.
+  _surface_normal_of_plane: The surface normal of the plane on which the projection of vector is sought.
 
-  returns:
-  The projection of vector on the plane defined by its surface normal.
+  _returns:
+  
+  _The projection of vector on the plane defined by its surface normal.
 
 ####  coordinate_transformations.rotate_point_about_arbitrary_axis_in_3d(position_vector_of_tail_of_rotation_axis, position_vector_of_tip_of_rotation_axis, coordinates_to_rotate, rotation_angle_in_degrees)
 
