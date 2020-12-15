@@ -18,7 +18,7 @@ The functions implemented till now are listed below
 
 #### 1.1. calculate_projection_of_vector_on_plane(vector, surface_normal_of_plane)
 
-  <mark> _Calculates projection of a vector on a plane given by its surface normal._ </mark>
+  _Calculates projection of a vector on a plane given by its surface normal._
 
   **_Parameters:_**
 
