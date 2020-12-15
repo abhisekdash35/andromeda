@@ -6,7 +6,9 @@ A python library for astronomers (Under Construction)
 ### 1. coordinate_transformations.py
 
 Functions in this file:
-#### #dcffe4 coordinate_transformations.calculate_projection_of_vector_on_plane(vector, surface_normal_of_plane)
+#### <div class="bg-yellow-light mb-2">
+  coordinate_transformations.calculate_projection_of_vector_on_plane(vector, surface_normal_of_plane)
+</div> 
 
 Calculates projection of a vector on a plane given by its surface normal.
 
