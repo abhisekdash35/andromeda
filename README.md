@@ -15,9 +15,7 @@ surface_normal_of_plane: The surface normal of the plane on which the projection
 ##### returns:
 The projection of vector on the plane defined by its surface normal.
 
-####  coordinate_transformations.rotate_point_about_arbitrary_axis_in_3d(position_vector_of_tail_of_rotation_axis, position_vector_of_tip_of_rotation_axis,
-                                                                      coordinates_to_rotate,
-####                                                                      rotation_angle_in_degrees)
+####  coordinate_transformations.rotate_point_about_arbitrary_axis_in_3d(position_vector_of_tail_of_rotation_axis, position_vector_of_tip_of_rotation_axis, coordinates_to_rotate, rotation_angle_in_degrees)
 Rotates a point about an arbitrary vector in 3D. Returns coordinates of rotated points.
 ##### Parameters: 
 position_vector_of_tail_of_rotation_axis: The position vector of the tail of rotation axis.
