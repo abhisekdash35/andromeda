@@ -26,26 +26,26 @@ The functions implemented till now are listed below
 
   _surface_normal_of_plane: The surface normal of the plane on which the projection of vector is sought._
 
-  _returns:_
+  **_returns:_**
   
   _The projection of vector on the plane defined by its surface normal._
 
-####  coordinate_transformations.rotate_point_about_arbitrary_axis_in_3d(position_vector_of_tail_of_rotation_axis, position_vector_of_tip_of_rotation_axis, coordinates_to_rotate, rotation_angle_in_degrees)
+* coordinate_transformations.rotate_point_about_arbitrary_axis_in_3d(position_vector_of_tail_of_rotation_axis, position_vector_of_tip_of_rotation_axis, coordinates_to_rotate, rotation_angle_in_degrees)
 
 Rotates a point about an arbitrary vector in 3D. Returns coordinates of rotated points.
-##### Parameters:
+**_Parameters:_**
 
-position_vector_of_tail_of_rotation_axis: The position vector of the tail of rotation axis.
+_position_vector_of_tail_of_rotation_axis: The position vector of the tail of rotation axis._
 
-position_vector_of_tip_of_rotation_axis: The position vector of the tip of rotation axis.
+_position_vector_of_tip_of_rotation_axis: The position vector of the tip of rotation axis._
 
-coordinates_to_rotate: Coordinates to rotate
+_coordinates_to_rotate: Coordinates to rotate_
 
-rotation_angle_in_degrees: Rotation angle in degrees.
+_rotation_angle_in_degrees: Rotation angle in degrees._
 
-##### returns:
+**_returns:_**:
 
-The rotated coordinates.
+_The rotated coordinates._
 
 #### coordinate_transformations.eq_to_hor(ra, dec, time_of_observation_in_datetime_format, latitude_of_observer, longitude_of_observer, local_standard_time_meridian)
 
