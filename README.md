@@ -16,7 +16,7 @@ This file contains functions related to transformations from one coordinate syst
 
 The functions implemented till now are listed below
 
-* coordinate_transformations . calculate_projection_of_vector_on_plane(vector, surface_normal_of_plane)
+* coordinate_transformations.calculate_projection_of_vector_on_plane(vector, surface_normal_of_plane)
   
   _Calculates projection of a vector on a plane given by its surface normal._
 
@@ -32,7 +32,8 @@ The functions implemented till now are listed below
 
 * coordinate_transformations.rotate_point_about_arbitrary_axis_in_3d(position_vector_of_tail_of_rotation_axis, position_vector_of_tip_of_rotation_axis, coordinates_to_rotate, rotation_angle_in_degrees)
 
-Rotates a point about an arbitrary vector in 3D. Returns coordinates of rotated points.
+_Rotates a point about an arbitrary vector in 3D. Returns coordinates of rotated points._
+
 **_Parameters:_**
 
 _position_vector_of_tail_of_rotation_axis: The position vector of the tail of rotation axis._
@@ -43,52 +44,53 @@ _coordinates_to_rotate: Coordinates to rotate_
 
 _rotation_angle_in_degrees: Rotation angle in degrees._
 
-**_returns:_**:
+**_returns:_**
 
 _The rotated coordinates._
 
-#### coordinate_transformations.eq_to_hor(ra, dec, time_of_observation_in_datetime_format, latitude_of_observer, longitude_of_observer, local_standard_time_meridian)
+* coordinate_transformations.eq_to_hor(ra, dec, time_of_observation_in_datetime_format, latitude_of_observer, longitude_of_observer, local_standard_time_meridian)
 
-Converts equatorial coordinates of right ascension and declination to horizon coordinates of azimuth ad elevation.
+_Converts equatorial coordinates of right ascension and declination to horizon coordinates of azimuth ad elevation._
 
-##### Parameters: 
+**_Parameters:_** 
 
-ra: The right ascension of the object in decimal hours between 0 and 24. 
+_ra: The right ascension of the object in decimal hours between 0 and 24._
 
-dec: The declination of the object in degrees. Negative for southern latitudes.
+_dec: The declination of the object in degrees. Negative for southern latitudes._
 
-time_of_observation_in_datetime_format: The local time of observation in standard datetime format.
+_time_of_observation_in_datetime_format: The local time of observation in standard datetime format._
 
-latitude_of_observer: Latitude of observer.
-
-longitude_of_observer: Longitude of observer.
-
-local_standard_time_meridian: The local standard time meridian. For e.g +82.5 for Indian Standard Time
-
-##### returns:
-The azimuth and altitude at observer's location.
-
-####  coordinate_transformations.hor_to_eq(azimuth, altitude,  time_of_observation_in_datetime_format, latitude_of_observer, longitude_of_observer, local_standard_time_meridian)
-
-Converts equatorial coordinates of right ascension and declination to horizon coordinates of azimuth ad elevation.
-
-##### Parameters: 
-
-azimuth: The azimuth angle of the object at observer's location.
-
-altitude: The altitude angle of the object at observer's location.
-
-time_of_observation_in_datetime_format: The local time of observation in standard datetime format.
-
-latitude_of_observer: Latitude of observer.
+_latitude_of_observer: Latitude of observer._
 
 longitude_of_observer: Longitude of observer.
 
-local_standard_time_meridian: The local standard time meridian. For e.g +82.5 for Indian Standard Time
+_local_standard_time_meridian: The local standard time meridian. For e.g +82.5 for Indian Standard Time_
 
-##### returns:
+**_returns:_**
 
-The right ascension and declination of the object.
+_The azimuth and altitude at observer's location._
+
+* coordinate_transformations.hor_to_eq(azimuth, altitude,  time_of_observation_in_datetime_format, latitude_of_observer, longitude_of_observer, local_standard_time_meridian)
+
+_Converts equatorial coordinates of right ascension and declination to horizon coordinates of azimuth ad elevation._
+
+**_Parameters:_** 
+
+_azimuth: The azimuth angle of the object at observer's location._
+
+_altitude: The altitude angle of the object at observer's location._
+
+_time_of_observation_in_datetime_format: The local time of observation in standard datetime format._
+
+_latitude_of_observer: Latitude of observer._
+
+_longitude_of_observer: Longitude of observer._
+
+_local_standard_time_meridian: The local standard time meridian. For e.g +82.5 for Indian Standard Time_
+
+**_returns:_**
+
+_The right ascension and declination of the object._
 
 
 ### 2. time_functions.py
