@@ -12,7 +12,7 @@ Currently the library has 3 files with 10 functions. It has been tested with cal
 
 ### 1. coordinate_transformations.py
 
-This file contains functions related to transformations from one coordinate system to another. (Mainly from horizon coordinates of azimuth and altitude to equatorial coordinates of declination and right ascension and vice versa.). 
+This file contains functions related to transformations from one coordinate system to another. (Mainly from horizon coordinates of azimuth and altitude to equatorial coordinates of declination and right ascension and vice versa.). Generic coordinate transformations from one basis to another is coming soon. 
 
 The functions implemented till now are listed below
 
