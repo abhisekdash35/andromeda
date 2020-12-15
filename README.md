@@ -4,8 +4,19 @@ A python library for astronomers (Under Construction)
 ## Files:
 
 ### coordinate_transformations.py
-To be added
+
 ### 1. time_functions.py
+#### calculate_projection_of_vector_on_plane(vector, surface_normal_of_plane)
+Calculates projection of a vector on a plane given by its surface normal.
+##### Parameters: 
+vector: The input vector
+surface_normal_of_plane: The surface normal of the plane on which the projection of vector is sought.
+##### returns:
+True if year is leap year else returns False
+
+
+### 1. time_functions.py
+
 #### time_functions.is_leap_year(year)
 Checks whether year passed is a leap year or not.
 ##### Parameters: 
