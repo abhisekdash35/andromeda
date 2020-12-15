@@ -17,9 +17,8 @@ This file contains functions related to transformations from one coordinate syst
 The functions implemented till now are listed below
 
 #### 1.1. calculate_projection_of_vector_on_plane(vector, surface_normal_of_plane)
-<div style="background-color:rgba(0, 0, 50, 0.0470588);">
-  
-  _Calculates projection of a vector on a plane given by its surface normal._
+
+  <span style="background-color: #FFFF00"> _Calculates projection of a vector on a plane given by its surface normal._ </span>
 
   **_Parameters:_**
 
@@ -30,7 +29,7 @@ The functions implemented till now are listed below
   **_returns:_**
 
   _The projection of vector on the plane defined by its surface normal._
-</div>
+
 #### 1.2. rotate_point_about_arbitrary_axis_in_3d(position_vector_of_tail_of_rotation_axis, position_vector_of_tip_of_rotation_axis, coordinates_to_rotate, rotation_angle_in_degrees)
 
   _Rotates a point about an arbitrary vector in 3D. Returns coordinates of rotated points._
