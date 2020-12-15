@@ -2,8 +2,12 @@ import coordinate_transformations
 import datetime
 import time
 while True:
-    azimuth,altitude = coordinate_transformations.eq_to_hor(ra=3.6,
-                                                            dec=0,
+    ra = 0.6
+    dec = -55
+    print("Actual RA: "+str(ra))
+    print("Actual DEC: "+str(dec))
+    azimuth,altitude = coordinate_transformations.eq_to_hor(ra=ra,
+                                                            dec=dec,
                                                             time_of_observation_in_datetime_format=datetime.datetime.now(),
                                                             latitude_of_observer=13,
                                                             longitude_of_observer=76,
@@ -16,8 +20,8 @@ while True:
                                                   latitude_of_observer=13,
                                                   longitude_of_observer=76,
                                                   local_standard_time_meridian=82.5)
-    print("RA: "+str(RA))
-    print("DEC: "+str(DEC))
+    print("Predicted RA: "+str(RA))
+    print("Predicted DEC: "+str(DEC))
     print()
     time.sleep(1)
 
@@ -87,3 +91,5 @@ while True:
 #                                                                          coordinates_to_rotate=adc,
 #                                                                          rotation_angle_in_degrees=-90)
 # print(adc)
+
+# print(coordinate_transformations.new_longitude(120,180))
