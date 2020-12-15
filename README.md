@@ -3,7 +3,7 @@ A python library for astronomers (Under Construction)
 
 ## Files:
 
-### <span style="color:blue"> 1. coordinate_transformations.py </span>
+### 1. coordinate_transformations.py
 
 Functions in this file:
 ####  coordinate_transformations.calculate_projection_of_vector_on_plane(vector, surface_normal_of_plane)
