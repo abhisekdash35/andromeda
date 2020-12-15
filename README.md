@@ -36,12 +36,14 @@ The rotated coordinates.
 ####                                        local_standard_time_meridian)
 Converts equatorial coordinates of right ascension and declination to horizon coordinates of azimuth ad elevation.
 ##### Parameters: 
-ra: The right ascension of the object.
-dec: The declination of the object.
+ra: The right ascension of the object in decimal hours between 0 and 24. 
+dec: The declination of the object in degrees. Negative for southern latitudes.
 time_of_observation_in_datetime_format: The local time of observation in standard datetime format.
 latitude_of_observer: Latitude of observer.
 longitude_of_observer: Longitude of observer.
 local_standard_time_meridian: The local standard time meridian. For e.g +82.5 for Indian Standard Time
+##### returns:
+The azimuth and altitude at observer's location.
 
 #### > coordinate_transformations.hor_to_eq(azimuth,
 ####              altitude,
@@ -49,16 +51,16 @@ local_standard_time_meridian: The local standard time meridian. For e.g +82.5 fo
 ####              latitude_of_observer,
 ####              longitude_of_observer,
 ####              local_standard_time_meridian)
-Converts equatorial coordinates of right ascension and declination to horizon coordinates of azimuth ad elevation.
+Converts horizon coordinates of right ascension and declination to horizon coordinates of azimuth ad elevation.
 ##### Parameters: 
-ra: The right ascension of the object.
-dec: The declination of the object.
+azimuth: The azimuth angle of the object at observer's location.
+altitude: The altitude angle of the object at observer's location.
 time_of_observation_in_datetime_format: The local time of observation in standard datetime format.
 latitude_of_observer: Latitude of observer.
 longitude_of_observer: Longitude of observer.
 local_standard_time_meridian: The local standard time meridian. For e.g +82.5 for Indian Standard Time
 ##### returns:
-The rotated coordinates.
+The right ascension and declination of the object.
 
 
 ### 2. time_functions.py
