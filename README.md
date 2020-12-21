@@ -48,7 +48,7 @@ The functions implemented till now are listed below
 
   _The rotated coordinates._
 
-#### 1.3. coordinate_transformations.eq_to_hor(ra, dec, time_of_observation_in_datetime_format, latitude_of_observer, longitude_of_observer, local_standard_time_meridian)
+#### 1.3. eq_to_hor(ra, dec, time_of_observation_in_datetime_format, latitude_of_observer, longitude_of_observer, local_standard_time_meridian)
 
   _Converts equatorial coordinates of right ascension and declination to horizon coordinates of azimuth ad elevation._
 
@@ -70,7 +70,7 @@ The functions implemented till now are listed below
 
   _The azimuth and altitude at observer's location._
 
-#### 1.4. coordinate_transformations.hor_to_eq(azimuth, altitude,  time_of_observation_in_datetime_format, latitude_of_observer, longitude_of_observer, local_standard_time_meridian)
+#### 1.4. hor_to_eq(azimuth, altitude,  time_of_observation_in_datetime_format, latitude_of_observer, longitude_of_observer, local_standard_time_meridian)
 
   _Converts equatorial coordinates of right ascension and declination to horizon coordinates of azimuth ad elevation._
 
