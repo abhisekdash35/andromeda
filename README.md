@@ -10,11 +10,10 @@ Currently the library has 3 files with 10 functions. It has been tested with cal
 
 ## Dependencies
 
-1. numpy
-
-2.math
-
-3. datetime
+1.  numpy
+2.  math
+3.  datetime
+4.  python 3 or higher
 
 
 ## Files:
