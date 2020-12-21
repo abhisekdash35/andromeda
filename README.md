@@ -8,6 +8,15 @@ Borne simply out of boredom and nothing much to do in the pandemic stricken year
 The library primarily uses elementary vector algebra to convert between horizon and equatorial coordinate systems and vice versa. The library also calculates things like sidereal time and solar time.
 Currently the library has 3 files with 10 functions. It has been tested with calculators available online and other third party libraries. I plan on expanding the scope of this library with time.
 
+## Dependencies
+
+1. numpy
+
+2.math
+
+3. datetime
+
+
 ## Files:
 
 ### 1. coordinate_transformations.py
