@@ -278,8 +278,8 @@ def hor_to_eq(azimuth,
     DEC = math.asin(unit_substellar_point_vector[2])
 
     # Find longitude of substellar point
-    sin_lon_ss = unit_substellar_point_vector[1] / math.cos(DEC)
-    lon_ss = math.asin(sin_lon_ss)
+    cos_lon_ss = unit_substellar_point_vector[0] / math.cos(DEC)
+    lon_ss = math.acos(cos_lon_ss)
     lon_ss = math.degrees(lon_ss)
     one_eighty_opposite_lon_obs = new_longitude(longitude_of_observer,180)
 
