@@ -23,7 +23,7 @@ def calculate_theta_phi(rotation_axis):
     phi = math.atan(y/math.sqrt(x**2 + z**2))
     if x == 0 and z < 0:
         return math.pi,phi
-    elif x > 0 and y > 0 and z > 0:
+    elif x > 0 and y >= 0 and z >= 0:
         return theta,phi
     elif x > 0 and y > 0 and z < 0:
         return math.pi + theta,phi
