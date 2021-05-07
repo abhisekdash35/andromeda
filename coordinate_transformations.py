@@ -16,7 +16,7 @@ def calculate_projection_of_vector_on_plane(vector, surface_normal_of_plane):
 # Accomplished by aligning the rotation axis with z axis and then rotating by required angle.
 # Then the backward transformation is done.
 def calculate_theta_phi(rotation_axis):
-        x = rotation_axis[0]
+    x = rotation_axis[0]
     y = rotation_axis[1]
     z = rotation_axis[2]
     if x >= 0 and y >= 0 and z >= 0:
