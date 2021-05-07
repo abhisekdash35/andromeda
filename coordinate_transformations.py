@@ -16,29 +16,67 @@ def calculate_projection_of_vector_on_plane(vector, surface_normal_of_plane):
 # Accomplished by aligning the rotation axis with z axis and then rotating by required angle.
 # Then the backward transformation is done.
 def calculate_theta_phi(rotation_axis):
-    x = rotation_axis[0]
+        x = rotation_axis[0]
     y = rotation_axis[1]
     z = rotation_axis[2]
-    theta = math.atan(x/z)
-    phi = math.atan(y/math.sqrt(x**2 + z**2))
-    if x == 0 and z < 0:
-        return math.pi,phi
-    elif x > 0 and y >= 0 and z >= 0:
+    if x >= 0 and y >= 0 and z >= 0:
+        if z == 0 and x == 0:
+            theta = 0
+            phi = math.pi/2
+        elif z == 0 and x != 0 :
+            theta = math.pi/2
+            phi = math.atan(y/math.sqrt(x**2 + z**2))
+        else:
+            theta = math.atan(x/z)
+            phi = math.atan(y/math.sqrt(x**2 + z**2))
         return theta,phi
-    elif x > 0 and y > 0 and z < 0:
-        return math.pi + theta,phi
-    elif x > 0 and y < 0 and z > 0:
+    elif x >= 0 and y >= 0 and z < 0:
+        theta = math.pi + math.atan(x/z)
+        phi = math.atan(y/math.sqrt(x**2 + z**2))
         return theta,phi
-    elif x > 0 and y < 0 and z < 0:
-        return theta,-(math.pi + phi)
-    elif x < 0  and y > 0 and z > 0:
+    elif x < 0 and y >= 0 and z <= 0:
+        if z == 0:
+            theta = 3*math.pi/2
+            phi = math.atan(y/math.sqrt(x**2 + z**2))
+        else:
+            theta = math.pi + math.atan(x/z)
+            phi = math.atan(y/math.sqrt(x**2 + z**2))
         return theta,phi
-    elif x < 0 and y > 0 and z < 0:
-        return theta,math.pi - phi
+    elif x < 0 and y >= 0 and z > 0:
+        theta = 2*math.pi + math.atan(x/z)
+        phi = math.atan(y/math.sqrt(x**2 + z**2))
+        return theta,phi
+    elif x >= 0 and y < 0 and z >= 0:
+        if z == 0 and x == 0:
+            theta = 0
+            phi = -math.pi/2
+        elif z == 0 and x != 0:
+            theta = math.pi/2 
+            phi = math.atan(y/math.sqrt(x**2 + z**2))
+        else:
+            theta = math.atan(x/z)
+            phi = math.atan(y/math.sqrt(x**2 + z**2))
+        return theta,phi
+    elif x >= 0 and y < 0 and z < 0:
+        if x == 0:
+            theta = 2*math.pi
+            phi =  math.atan(y/math.sqrt(x**2 + z**2))
+        else:
+            theta = math.pi + math.atan(x/z)
+            phi = math.atan(y/math.sqrt(x**2 + z**2))
+        return theta,phi
+    elif x < 0 and y < 0 and z <= 0:
+        if z == 0:
+            theta = 3*math.pi/2
+            phi = math.atan(y/math.sqrt(x**2 + z**2))
+        else:
+            theta = math.pi + math.atan(x/z)
+            phi = math.atan(y/math.sqrt(x**2 + z**2))
+        return theta,phi
     elif x < 0 and y < 0 and z > 0:
+        theta = 2*math.pi + math.atan(x/z)
+        phi = math.atan(y/math.sqrt(x**2 + z**2))
         return theta,phi
-    elif x < 0 and y < 0 and z < 0:
-        return theta,-(math.pi + phi)
 
 
 def rotate_point_about_arbitrary_axis_in_3d(position_vector_of_tail_of_rotation_axis,
